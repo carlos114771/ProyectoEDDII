@@ -34,7 +34,9 @@ public class Principal extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jd_persona = new javax.swing.JDialog();
         jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -88,6 +90,17 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jd_personaLayout = new javax.swing.GroupLayout(jd_persona.getContentPane());
+        jd_persona.getContentPane().setLayout(jd_personaLayout);
+        jd_personaLayout.setHorizontalGroup(
+            jd_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_personaLayout.setVerticalGroup(
+            jd_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Agregar Archivo");
@@ -97,21 +110,35 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Agregar Persona");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jButton1)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jButton4)))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jButton1)
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addGap(105, 105, 105)
+                .addComponent(jButton4)
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,6 +151,15 @@ public class Principal extends javax.swing.JFrame {
         this.jDialog1.setLocationRelativeTo(this);
         this.jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.jd_persona.setModal(true);
+        this.jd_persona.pack();
+        this.jd_persona.setLocationRelativeTo(this);
+        this.setVisible(true);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,10 +200,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JDialog jd_persona;
     // End of variables declaration//GEN-END:variables
 }
