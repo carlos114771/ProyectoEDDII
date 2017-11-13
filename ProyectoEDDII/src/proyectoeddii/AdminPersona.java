@@ -61,12 +61,13 @@ public class AdminPersona {
             bw.write(";");
             bw.flush();
         } catch (Exception e) {
-
+            e.printStackTrace();
         } finally {
             try {
                 bw.close();
                 fw.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -81,6 +82,7 @@ public class AdminPersona {
                 lista.add(new Persona(sc.next(), sc.nextInt(), sc.nextInt(), sc.next()));
             }
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             sc.close();
         }
