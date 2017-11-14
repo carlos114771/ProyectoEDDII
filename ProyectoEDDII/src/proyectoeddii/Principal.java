@@ -544,6 +544,14 @@ public class Principal extends javax.swing.JFrame {
             modelo.addRow(newrow);
             tb_campos.setModel(modelo);
             
+            FileWriter writer = new FileWriter("output.txt");
+            BufferedWriter bw = new BufferedWriter(writer);
+            PrintWriter writes = new PrintWriter(bw);
+            for (int i = 0; i < campos.size(); i++){
+                writes.write(campos.get(i).toString());
+            }
+            writer.close();
+            
             tf_nombre_campo.setText("");
             cb_tipo_campos.setSelectedIndex(0);
             sp_longitud_campos.setValue(0);
