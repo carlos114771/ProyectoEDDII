@@ -5,28 +5,29 @@
  */
 package proyectoeddii;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Josué Zelaya
  */
 public class Registro {
-    public Campo campo;
+    public ArrayList<Campo> campos=new ArrayList();
     public String contenido;
 
     public Registro() {
     }
 
-    public Registro(Campo campo, String contenido) {
-        this.campo = campo;
+    public Registro(String contenido) {
         this.contenido = contenido;
     }
 
-    public Campo getCampo() {
-        return campo;
+    public ArrayList<Campo> getCampos() {
+        return campos;
     }
 
-    public void setCampo(Campo campo) {
-        this.campo = campo;
+    public void setCampos(ArrayList<Campo> campos) {
+        this.campos = campos;
     }
 
     public String getContenido() {
@@ -39,8 +40,10 @@ public class Registro {
 
     @Override
     public String toString() {
-        return "Registro{" + "campo=" + campo + ", contenido=" + contenido + '}';
+        return "Registro{" + "campos=" + campos + ", contenido=" + contenido + '}';
     }
+
+  
     
     
 }

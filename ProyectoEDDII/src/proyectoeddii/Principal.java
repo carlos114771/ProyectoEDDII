@@ -39,7 +39,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         tf_nombre_campo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        boton_crearcampo = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cb_tipo_campos = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
@@ -164,11 +164,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Ingrese el Nombre del Campo:");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("¡Crear!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        boton_crearcampo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        boton_crearcampo.setText("¡Crear!");
+        boton_crearcampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                boton_crearcampoActionPerformed(evt);
             }
         });
 
@@ -212,7 +212,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rb_no))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boton_crearcampo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(156, 156, 156)))
                 .addGap(52, 52, 52))
         );
@@ -237,7 +237,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(rb_no))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boton_crearcampo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
 
@@ -636,6 +636,7 @@ public class Principal extends javax.swing.JFrame {
                 + "Nuevo Archivo");
 
         archivo = new File(Nombre + ".txt");
+        //System.out.println(Nombre);
         try {
             if (archivo.createNewFile()) {
                 JOptionPane.showMessageDialog(null, "Su archivo Ha sido creado "
@@ -651,7 +652,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-         if (cont == 0) {
+        if (cont == 0) {
             JFileChooser jfc = new JFileChooser();
             int seleccion = jfc.showSaveDialog(this);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
@@ -669,7 +670,7 @@ public class Principal extends javax.swing.JFrame {
             bw = new BufferedWriter(fw);
             String text = "";
             for (int j = 0; j < list.size(); j++) {
-             
+
             }
 
             bw.write(text);
@@ -687,33 +688,36 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void boton_crearcampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_crearcampoActionPerformed
         try {
             String nombre_campo, tipo_campo, campo_llave;
             int longitud_campo;
             nombre_campo = tf_nombre_campo.getText();
             tipo_campo = cb_tipo_campos.getSelectedItem().toString();
-            longitud_campo = (Integer)sp_longitud_campos.getValue();
-            if (rb_si.isSelected()){
+            longitud_campo = (Integer) sp_longitud_campos.getValue();
+            if (rb_si.isSelected()) {
                 campo_llave = "Si";
             } else {
                 campo_llave = "No";
             }
             campos.add(new Campo(nombre_campo, tipo_campo, longitud_campo, campo_llave));
-            
-            DefaultTableModel modelo =(DefaultTableModel)tb_campos.getModel();
+            for (int i = 0; i < campos.size(); i++) {
+                System.out.println(campos.get(i).getNombre_campo());
+            }
+            DefaultTableModel modelo = (DefaultTableModel) tb_campos.getModel();
             Object[] newrow = {nombre_campo, tipo_campo, longitud_campo, campo_llave};
             modelo.addRow(newrow);
             tb_campos.setModel(modelo);
-            
-            FileWriter writer = new FileWriter("output.txt");
-            BufferedWriter bw = new BufferedWriter(writer);
-            PrintWriter writes = new PrintWriter(bw);
-            for (int i = 0; i < campos.size(); i++){
-                writes.write(campos.get(i).toString());
+
+            FileWriter fw = new FileWriter(Nombre + ".txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (int i = 0; i < campos.size(); i++) {
+                bw.write(campos.get(i).getNombre_campo().toString());
+                bw.write(";");
             }
-            writer.close();
-            
+            bw.close();
+
             tf_nombre_campo.setText("");
             cb_tipo_campos.setSelectedIndex(0);
             sp_longitud_campos.setValue(0);
@@ -722,12 +726,12 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_boton_crearcampoActionPerformed
 
     private void tb_camposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_camposMouseClicked
-        if (evt.isMetaDown()){
+        if (evt.isMetaDown()) {
             int row = tb_campos.getSelectedRow();
-            if (tb_campos.getSelectedRow() != -1){
+            if (tb_campos.getSelectedRow() != -1) {
                 popup_campos.show(evt.getComponent(), evt.getX(), evt.getY());
             }
         }
@@ -764,8 +768,8 @@ public class Principal extends javax.swing.JFrame {
             int longitud_campo;
             nombre_campo = tf_nombre_campo.getText();
             tipo_campo = cb_tipo_campos.getSelectedItem().toString();
-            longitud_campo = (Integer)sp_longitud_campos.getValue();
-            if (rb_si.isSelected()){
+            longitud_campo = (Integer) sp_longitud_campos.getValue();
+            if (rb_si.isSelected()) {
                 campo_llave = "Si";
             } else {
                 campo_llave = "No";
@@ -785,16 +789,15 @@ public class Principal extends javax.swing.JFrame {
         try {
             Campo campo;
             String contenido;
-            campo=(Campo) cb_campos.getSelectedItem();
-            contenido=tf_contenido_registro.getText();
-            
-            registros.add(new Registro(campo, contenido));
-            
-            DefaultTableModel modelo =(DefaultTableModel)tabla_registros.getModel();
+            campo = (Campo) cb_campos.getSelectedItem();
+            contenido = tf_contenido_registro.getText();
+
+            //registros.add(new Registro(campo, contenido));
+            DefaultTableModel modelo = (DefaultTableModel) tabla_registros.getModel();
             Object[] newrow = {campo, contenido};
             modelo.addRow(newrow);
             tabla_registros.setModel(modelo);
-            
+
             tf_contenido_registro.setText("");
             cb_tipo_campos.setSelectedIndex(0);
             cb_campos.setSelectedIndex(0);
@@ -826,9 +829,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void tabla_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_registrosMouseClicked
         // TODO add your handling code here:
-         if (evt.isMetaDown()){
+        if (evt.isMetaDown()) {
             int row = tabla_registros.getSelectedRow();
-            if (tabla_registros.getSelectedRow() != -1){
+            if (tabla_registros.getSelectedRow() != -1) {
                 popup_registros.show(evt.getComponent(), evt.getX(), evt.getY());
             }
         }
@@ -845,28 +848,24 @@ public class Principal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Principal.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Principal.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Principal.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -879,13 +878,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_crearcampo;
     private javax.swing.JButton boton_guardarregistro;
     private javax.swing.ButtonGroup bt_campo_llave;
     private javax.swing.JComboBox cb_campos;
     private javax.swing.JComboBox<String> cb_tipo_campos;
     private javax.swing.JComboBox<String> cb_tipo_mod;
     private javax.swing.JMenuItem creararchivo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -948,9 +947,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre_mod;
     // End of variables declaration//GEN-END:variables
 String Nombre;
-ArrayList list = new ArrayList();
-File archivo = null;
-int cont=0;
-ArrayList campos = new ArrayList();
-ArrayList registros=new ArrayList();
+    ArrayList list = new ArrayList();
+    File archivo = null;
+    int cont = 0;
+    ArrayList<Campo> campos = new ArrayList();
+    ArrayList registros = new ArrayList();
 }
