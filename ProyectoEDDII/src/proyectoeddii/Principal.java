@@ -72,12 +72,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        cb_campos = new javax.swing.JComboBox();
         tf_contenido_registro = new javax.swing.JTextField();
         boton_guardarregistro = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla_registro_campo = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_registros = new javax.swing.JTable();
         popup_registros = new javax.swing.JPopupMenu();
@@ -411,12 +410,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel15.setText("Registros");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel16.setText("Ingresar Registro para Respectivo campo:");
+        jLabel16.setText("Ingrese el Registro");
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel18.setText("Seleccione el Campo:");
-
-        cb_campos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_contenido_registro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_contenido_registroActionPerformed(evt);
+            }
+        });
 
         boton_guardarregistro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         boton_guardarregistro.setText("Guardar");
@@ -426,6 +426,16 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        tabla_registro_campo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Campos para este Registro"
+            }
+        ));
+        jScrollPane3.setViewportView(tabla_registro_campo);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -433,65 +443,58 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
                         .addComponent(jLabel17))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_contenido_registro)
-                            .addComponent(cb_campos, 0, 179, Short.MAX_VALUE))))
-                .addGap(19, 19, 19))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 157, Short.MAX_VALUE)
+                        .addGap(214, 214, 214)
+                        .addComponent(jLabel15)))
+                .addGap(0, 19, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(boton_guardarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(127, 127, 127))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(202, 202, 202))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel16)
+                        .addGap(27, 27, 27)
+                        .addComponent(tf_contenido_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(boton_guardarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15)
-                .addGap(44, 44, 44)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel17)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel18)
-                        .addComponent(cb_campos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(tf_contenido_registro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(boton_guardarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel17)
+                        .addGap(238, 238, 238))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(boton_guardarregistro)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPane2.addTab("Crear Registros", jPanel3);
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         tabla_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Campo", "Contenido"
+                "Registro"
             }
         ));
-        tabla_registros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabla_registrosMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(tabla_registros);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -499,35 +502,28 @@ public class Principal extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(jLabel19))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jTabbedPane2.addTab("Modificar/Listar/Eliminar Registros", jPanel4);
+        jTabbedPane2.addTab("Modificar, Eliminar", jPanel4);
 
         javax.swing.GroupLayout jd_registrosLayout = new javax.swing.GroupLayout(jd_registros.getContentPane());
         jd_registros.getContentPane().setLayout(jd_registrosLayout);
         jd_registrosLayout.setHorizontalGroup(
             jd_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_registrosLayout.createSequentialGroup()
+            .addGroup(jd_registrosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
-                .addContainerGap())
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jd_registrosLayout.setVerticalGroup(
             jd_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -723,6 +719,7 @@ public class Principal extends javax.swing.JFrame {
             sp_longitud_campos.setValue(0);
             rb_si.setSelected(false);
             rb_no.setSelected(true);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
         }
@@ -785,28 +782,6 @@ public class Principal extends javax.swing.JFrame {
         jd_modificar_campo.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void boton_guardarregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_guardarregistroMouseClicked
-        try {
-            Campo campo;
-            String contenido;
-            campo = (Campo) cb_campos.getSelectedItem();
-            contenido = tf_contenido_registro.getText();
-
-            //registros.add(new Registro(campo, contenido));
-            DefaultTableModel modelo = (DefaultTableModel) tabla_registros.getModel();
-            Object[] newrow = {campo, contenido};
-            modelo.addRow(newrow);
-            tabla_registros.setModel(modelo);
-
-            tf_contenido_registro.setText("");
-            cb_tipo_campos.setSelectedIndex(0);
-            cb_campos.setSelectedIndex(0);
-            JOptionPane.showMessageDialog(this, "Se guardo correctamente");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
-        }
-    }//GEN-LAST:event_boton_guardarregistroMouseClicked
-
     private void jm_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_registrosMouseClicked
         // TODO add your handling code here:
         this.jd_registros.setModal(true);
@@ -827,15 +802,68 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Registro eliminado exitosamente");
     }//GEN-LAST:event_mi_eliminar_registrosActionPerformed
 
-    private void tabla_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_registrosMouseClicked
-        // TODO add your handling code here:
-        if (evt.isMetaDown()) {
-            int row = tabla_registros.getSelectedRow();
-            if (tabla_registros.getSelectedRow() != -1) {
-                popup_registros.show(evt.getComponent(), evt.getX(), evt.getY());
+    private void boton_guardarregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_guardarregistroMouseClicked
+        try {
+            String contenido = "";
+            contenido = tf_contenido_registro.getText();
+            Registro r = new Registro();
+            r.setCampos(campos);//paso todos los campos al regristo campos
+            System.out.println(contenido);
+            registros.add(new Registro(contenido));//guardar registros
+
+            //listar los campos que tiene ese registro
+            for (int i = 0; i < r.getCampos().size(); i++) {
+                DefaultTableModel modelo = (DefaultTableModel) tabla_registro_campo.getModel();
+                Object[] newrow = {r.getCampos().get(i).getNombre_campo()};
+                /*for (int j = 0; j < tabla_registro_campo.getRowCount(); j++) {
+                 if(tabla_registro_campo.getValueAt(j, 0).equals(r.getCampos().get(i).getNombre_campo())){
+                 modelo.removeRow(j);
+                 }else{
+                        
+                 }
+                 break;
+                 }*/
+                modelo.addRow(newrow);
+                tabla_registro_campo.setModel(modelo);
+
             }
+
+            //Listar los Registros
+            DefaultTableModel modelo = (DefaultTableModel) tabla_registros.getModel();
+            Object[] newrow = {contenido};
+            modelo.addRow(newrow);
+            tabla_registros.setModel(modelo);
+
+            /*Escritura de Registros*/
+            FileWriter fw = new FileWriter(Nombre + ".txt", true);//evitamos sobreescribir 
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.newLine();
+            for (Registro registro : registros) {
+                bw.write(registro.getContenido());
+                bw.write(";");
+            }
+//            for (int i = 0; i < registros.size(); i++) {
+//                bw.write(registros.get(i).getContenido());
+//                
+//            }
+            bw.close();
+
+            tf_contenido_registro.setText("");
+            //Limpiar la table de los campos del registro
+            /*DefaultTableModel tb = (DefaultTableModel) tabla_registro_campo.getModel();
+             int a = tabla_registro_campo.getRowCount() - 1;
+             for (int i = a; i >= 0; i--) {
+             tb.removeRow(tb.getRowCount() - 1);
+             }*/
+            JOptionPane.showMessageDialog(this, "Se guardo correctamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
         }
-    }//GEN-LAST:event_tabla_registrosMouseClicked
+    }//GEN-LAST:event_boton_guardarregistroMouseClicked
+
+    private void tf_contenido_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_contenido_registroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_contenido_registroActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -881,7 +909,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton boton_crearcampo;
     private javax.swing.JButton boton_guardarregistro;
     private javax.swing.ButtonGroup bt_campo_llave;
-    private javax.swing.JComboBox cb_campos;
     private javax.swing.JComboBox<String> cb_tipo_campos;
     private javax.swing.JComboBox<String> cb_tipo_mod;
     private javax.swing.JMenuItem creararchivo;
@@ -896,8 +923,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -917,6 +942,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JDialog jd_campos;
@@ -936,6 +962,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_si_mod;
     private javax.swing.JSpinner sp_longitud_campos;
     private javax.swing.JSpinner sp_longitud_mod;
+    private javax.swing.JTable tabla_registro_campo;
     private javax.swing.JTable tabla_registros;
     private javax.swing.JTable tb_campos;
     private javax.swing.JTextField tf_contenido_registro;
@@ -951,5 +978,5 @@ String Nombre;
     File archivo = null;
     int cont = 0;
     ArrayList<Campo> campos = new ArrayList();
-    ArrayList registros = new ArrayList();
+    ArrayList<Registro> registros = new ArrayList();
 }
