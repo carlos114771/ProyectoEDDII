@@ -825,6 +825,7 @@ public class Principal extends javax.swing.JFrame {
                 Registro r = new Registro();
                 r.setCampos(campos);//paso todos los campos al regristo campos
                 //System.out.println(contenido);
+                System.out.println(contenido);
                 registros.add(new Registro(contenido));//guardar registros
 
                 //Listar los Registros
