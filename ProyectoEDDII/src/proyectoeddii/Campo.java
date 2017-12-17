@@ -8,6 +8,11 @@ public class Campo {
     public Campo() {
     }
 
+    public Campo(String nombre_campo) {
+        this.nombre_campo = nombre_campo;
+    }
+    
+
     public Campo(String nombre_campo, String tipo_campo, int longitud_campo, String campo_llave) {
         this.nombre_campo = nombre_campo;
         this.tipo_campo = tipo_campo;

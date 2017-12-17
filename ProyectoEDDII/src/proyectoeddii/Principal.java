@@ -697,38 +697,41 @@ public class Principal extends javax.swing.JFrame {
         try {
             String nombre_campo, tipo_campo, campo_llave;
             int longitud_campo;
-            nombre_campo = tf_nombre_campo.getText();
-            tipo_campo = cb_tipo_campos.getSelectedItem().toString();
-            longitud_campo = (Integer) sp_longitud_campos.getValue();
-            if (rb_si.isSelected()) {
-                campo_llave = "Si";
+            if (tf_nombre_campo.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Error\n El Nombre del Campor no puede Quedar Vacio");
             } else {
-                campo_llave = "No";
-            }
-            campos.add(new Campo(nombre_campo, tipo_campo, longitud_campo, campo_llave));
-            /*for (int i = 0; i < campos.size(); i++) {
+                nombre_campo = tf_nombre_campo.getText();
+                tipo_campo = cb_tipo_campos.getSelectedItem().toString();
+                longitud_campo = (Integer) sp_longitud_campos.getValue();
+                if (rb_si.isSelected()) {
+                    campo_llave = "Si";
+                } else {
+                    campo_llave = "No";
+                }
+                campos.add(new Campo(nombre_campo, tipo_campo, longitud_campo, campo_llave));
+                /*for (int i = 0; i < campos.size(); i++) {
              System.out.println(campos.get(i).getNombre_campo());
              }*/
-            DefaultTableModel modelo = (DefaultTableModel) tb_campos.getModel();
-            Object[] newrow = {nombre_campo, tipo_campo, longitud_campo, campo_llave};
-            modelo.addRow(newrow);
-            tb_campos.setModel(modelo);
+                DefaultTableModel modelo = (DefaultTableModel) tb_campos.getModel();
+                Object[] newrow = {nombre_campo, tipo_campo, longitud_campo, campo_llave};
+                modelo.addRow(newrow);
+                tb_campos.setModel(modelo);
 
-            FileWriter fw = new FileWriter(Nombre + ".txt");
-            BufferedWriter bw = new BufferedWriter(fw);
+                FileWriter fw = new FileWriter(Nombre + ".txt");
+                BufferedWriter bw = new BufferedWriter(fw);
 
-            for (int i = 0; i < campos.size(); i++) {
-                bw.write(campos.get(i).getNombre_campo().toString());
-                bw.write(";");
+                for (int i = 0; i < campos.size(); i++) {
+                    bw.write(campos.get(i).getNombre_campo().toString());
+                    bw.write(";");
+                }
+                bw.close();
+
+                tf_nombre_campo.setText("");
+                cb_tipo_campos.setSelectedIndex(0);
+                sp_longitud_campos.setValue(0);
+                rb_si.setSelected(false);
+                rb_no.setSelected(true);
             }
-            bw.close();
-
-            tf_nombre_campo.setText("");
-            cb_tipo_campos.setSelectedIndex(0);
-            sp_longitud_campos.setValue(0);
-            rb_si.setSelected(false);
-            rb_no.setSelected(true);
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
         }
@@ -814,20 +817,25 @@ public class Principal extends javax.swing.JFrame {
     private void boton_guardarregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_guardarregistroMouseClicked
         try {
             String contenido = "";
-            contenido = tf_contenido_registro.getText();
-            Registro r = new Registro();
-            r.setCampos(campos);//paso todos los campos al regristo campos
-            //System.out.println(contenido);
-            registros.add(new Registro(contenido));//guardar registros
+            if (tf_contenido_registro.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Error\n El Registro no puede quedar vacio");
+            } else {
 
-            //Listar los Registros
-            DefaultTableModel modelo = (DefaultTableModel) tabla_registros.getModel();
-            Object[] newrow = {contenido};
-            modelo.addRow(newrow);
-            tabla_registros.setModel(modelo);
+                contenido = tf_contenido_registro.getText();
+                Registro r = new Registro();
+                r.setCampos(campos);//paso todos los campos al regristo campos
+                //System.out.println(contenido);
+                registros.add(new Registro(contenido));//guardar registros
 
-            tf_contenido_registro.setText("");
-            JOptionPane.showMessageDialog(this, "Se guardo correctamente");
+                //Listar los Registros
+                DefaultTableModel modelo = (DefaultTableModel) tabla_registros.getModel();
+                Object[] newrow = {contenido};
+                modelo.addRow(newrow);
+                tabla_registros.setModel(modelo);
+
+                tf_contenido_registro.setText("");
+                JOptionPane.showMessageDialog(this, "Se guardo correctamente");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
         }
@@ -879,11 +887,11 @@ public class Principal extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(this, "Se seleccionó el archivo exitosamente");
             JOptionPane.showMessageDialog(this, "Se ha Cargado exitosamente");
-            
+
             for (int i = 0; i < registros.size(); i++) {
                 System.out.println(registros.get(i).getContenido());
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
         } finally {
