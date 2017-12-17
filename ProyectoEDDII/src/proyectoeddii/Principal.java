@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -75,12 +76,13 @@ public class Principal extends javax.swing.JFrame {
         tf_contenido_registro = new javax.swing.JTextField();
         boton_guardarregistro = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabla_registro_campo = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
         tabla_registros = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        boton_exportar = new javax.swing.JButton();
+        boton_cargar_registros = new javax.swing.JButton();
         popup_registros = new javax.swing.JPopupMenu();
         mi_eliminar_registros = new javax.swing.JMenuItem();
+        foto_background = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -426,30 +428,24 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        tabla_registro_campo.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Campos para este Registro"
+                "Registros"
             }
         ));
-        jScrollPane3.setViewportView(tabla_registro_campo);
+        jScrollPane3.setViewportView(tabla_registros);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel17))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(jLabel15)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17)
                 .addGap(0, 19, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,7 +456,10 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(tf_contenido_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(198, 198, 198)
-                        .addComponent(boton_guardarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(boton_guardarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(jLabel15)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -481,40 +480,48 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(boton_guardarregistro)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
 
-        jTabbedPane2.addTab("Crear Registros", jPanel3);
+        jTabbedPane2.addTab("Registros", jPanel3);
 
-        tabla_registros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Registro"
+        boton_exportar.setText("Exportar Registros a TXT");
+        boton_exportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_exportarMouseClicked(evt);
             }
-        ));
-        jScrollPane2.setViewportView(tabla_registros);
+        });
+
+        boton_cargar_registros.setText("Cargar Registros");
+        boton_cargar_registros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_cargar_registrosMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(boton_exportar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addComponent(boton_cargar_registros, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boton_exportar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_cargar_registros, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Modificar, Eliminar", jPanel4);
+        jTabbedPane2.addTab("Exportar TXT/Cargar", jPanel4);
 
         javax.swing.GroupLayout jd_registrosLayout = new javax.swing.GroupLayout(jd_registros.getContentPane());
         jd_registros.getContentPane().setLayout(jd_registrosLayout);
@@ -529,7 +536,7 @@ public class Principal extends javax.swing.JFrame {
             jd_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_registrosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -542,6 +549,8 @@ public class Principal extends javax.swing.JFrame {
         popup_registros.add(mi_eliminar_registros);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        foto_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoeddii/Circuit-Board-Background-600x600.jpg"))); // NOI18N
 
         jMenu1.setText("Opciones");
 
@@ -592,11 +601,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addComponent(foto_background, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 423, Short.MAX_VALUE)
+            .addComponent(foto_background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 426, Short.MAX_VALUE)
         );
 
         pack();
@@ -697,9 +706,9 @@ public class Principal extends javax.swing.JFrame {
                 campo_llave = "No";
             }
             campos.add(new Campo(nombre_campo, tipo_campo, longitud_campo, campo_llave));
-            for (int i = 0; i < campos.size(); i++) {
-                System.out.println(campos.get(i).getNombre_campo());
-            }
+            /*for (int i = 0; i < campos.size(); i++) {
+             System.out.println(campos.get(i).getNombre_campo());
+             }*/
             DefaultTableModel modelo = (DefaultTableModel) tb_campos.getModel();
             Object[] newrow = {nombre_campo, tipo_campo, longitud_campo, campo_llave};
             modelo.addRow(newrow);
@@ -808,25 +817,8 @@ public class Principal extends javax.swing.JFrame {
             contenido = tf_contenido_registro.getText();
             Registro r = new Registro();
             r.setCampos(campos);//paso todos los campos al regristo campos
-            System.out.println(contenido);
+            //System.out.println(contenido);
             registros.add(new Registro(contenido));//guardar registros
-
-            //listar los campos que tiene ese registro
-            for (int i = 0; i < r.getCampos().size(); i++) {
-                DefaultTableModel modelo = (DefaultTableModel) tabla_registro_campo.getModel();
-                Object[] newrow = {r.getCampos().get(i).getNombre_campo()};
-                /*for (int j = 0; j < tabla_registro_campo.getRowCount(); j++) {
-                 if(tabla_registro_campo.getValueAt(j, 0).equals(r.getCampos().get(i).getNombre_campo())){
-                 modelo.removeRow(j);
-                 }else{
-                        
-                 }
-                 break;
-                 }*/
-                modelo.addRow(newrow);
-                tabla_registro_campo.setModel(modelo);
-
-            }
 
             //Listar los Registros
             DefaultTableModel modelo = (DefaultTableModel) tabla_registros.getModel();
@@ -834,27 +826,7 @@ public class Principal extends javax.swing.JFrame {
             modelo.addRow(newrow);
             tabla_registros.setModel(modelo);
 
-            /*Escritura de Registros*/
-            FileWriter fw = new FileWriter(Nombre + ".txt", true);//evitamos sobreescribir 
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.newLine();
-            for (Registro registro : registros) {
-                bw.write(registro.getContenido());
-                bw.write(";");
-            }
-//            for (int i = 0; i < registros.size(); i++) {
-//                bw.write(registros.get(i).getContenido());
-//                
-//            }
-            bw.close();
-
             tf_contenido_registro.setText("");
-            //Limpiar la table de los campos del registro
-            /*DefaultTableModel tb = (DefaultTableModel) tabla_registro_campo.getModel();
-             int a = tabla_registro_campo.getRowCount() - 1;
-             for (int i = a; i >= 0; i--) {
-             tb.removeRow(tb.getRowCount() - 1);
-             }*/
             JOptionPane.showMessageDialog(this, "Se guardo correctamente");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
@@ -864,6 +836,61 @@ public class Principal extends javax.swing.JFrame {
     private void tf_contenido_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_contenido_registroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_contenido_registroActionPerformed
+
+    private void boton_exportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_exportarMouseClicked
+        // TODO add your handling code here:
+        try {
+            /*Escritura de Registros*/
+            FileWriter fw = new FileWriter(Nombre + ".txt", true);//evitamos sobreescribir 
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.newLine();
+            for (Registro registro : registros) {
+                bw.write(registro.getContenido());
+                bw.write(";");
+            }
+            bw.close();
+
+            JOptionPane.showMessageDialog(this, "Se han exportado todos los registros exitosamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
+        }
+    }//GEN-LAST:event_boton_exportarMouseClicked
+
+    private void boton_cargar_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_cargar_registrosMouseClicked
+        // TODO add your handling code here:
+        Scanner sc = null;
+        registros = new ArrayList();
+        File archivo1 = null;
+        try {
+            if (cont == 0) {
+                JFileChooser jfc = new JFileChooser();
+                int seleccion = jfc.showSaveDialog(this);
+                if (seleccion == JFileChooser.APPROVE_OPTION) {
+                    archivo1 = jfc.getSelectedFile();
+                }
+
+                cont++;
+            }
+
+            sc = new Scanner(archivo1);
+            sc.useDelimiter(";");
+            while (sc.hasNext()) {
+                registros.add(new Registro(sc.next()));
+            }
+            JOptionPane.showMessageDialog(this, "Se seleccionó el archivo exitosamente");
+            JOptionPane.showMessageDialog(this, "Se ha Cargado exitosamente");
+            
+            for (int i = 0; i < registros.size(); i++) {
+                System.out.println(registros.get(i).getContenido());
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron los datos");
+        } finally {
+            sc.close();
+        }
+
+    }//GEN-LAST:event_boton_cargar_registrosMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -906,12 +933,15 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_cargar_registros;
     private javax.swing.JButton boton_crearcampo;
+    private javax.swing.JButton boton_exportar;
     private javax.swing.JButton boton_guardarregistro;
     private javax.swing.ButtonGroup bt_campo_llave;
     private javax.swing.JComboBox<String> cb_tipo_campos;
     private javax.swing.JComboBox<String> cb_tipo_mod;
     private javax.swing.JMenuItem creararchivo;
+    private javax.swing.JLabel foto_background;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -941,7 +971,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
@@ -962,7 +991,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_si_mod;
     private javax.swing.JSpinner sp_longitud_campos;
     private javax.swing.JSpinner sp_longitud_mod;
-    private javax.swing.JTable tabla_registro_campo;
     private javax.swing.JTable tabla_registros;
     private javax.swing.JTable tb_campos;
     private javax.swing.JTextField tf_contenido_registro;
@@ -973,7 +1001,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre_campo;
     private javax.swing.JTextField tf_nombre_mod;
     // End of variables declaration//GEN-END:variables
-String Nombre;
+    String Nombre;
     ArrayList list = new ArrayList();
     File archivo = null;
     int cont = 0;
