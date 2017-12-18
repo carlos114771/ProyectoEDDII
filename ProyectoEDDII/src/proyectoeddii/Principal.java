@@ -56,7 +56,7 @@ public class Principal extends javax.swing.JFrame {
         mi_modificar_campo = new javax.swing.JMenuItem();
         mi_eliminar_campo = new javax.swing.JMenuItem();
         jd_modificar_campo = new javax.swing.JDialog();
-        jButton2 = new javax.swing.JButton();
+        boton_modificar_campo = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         tf_nombre_mod = new javax.swing.JTextField();
@@ -82,6 +82,13 @@ public class Principal extends javax.swing.JFrame {
         boton_cargar_registros = new javax.swing.JButton();
         popup_registros = new javax.swing.JPopupMenu();
         mi_eliminar_registros = new javax.swing.JMenuItem();
+        mi_modificar_registros = new javax.swing.JMenuItem();
+        jd_modificar_buscar_registros = new javax.swing.JDialog();
+        jLabel19 = new javax.swing.JLabel();
+        tf_nuevoregistro = new javax.swing.JTextField();
+        boton_modificar_registro = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         foto_background = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -313,10 +320,10 @@ public class Principal extends javax.swing.JFrame {
         });
         popup_campos.add(mi_eliminar_campo);
 
-        jButton2.setText("¡Modificar!");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        boton_modificar_campo.setText("¡Modificar!");
+        boton_modificar_campo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                boton_modificar_campoActionPerformed(evt);
             }
         });
 
@@ -355,7 +362,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addGap(160, 160, 160))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_modificar_campoLayout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boton_modificar_campo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(192, 192, 192))))
             .addGroup(jd_modificar_campoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jd_modificar_campoLayout.createSequentialGroup()
@@ -382,7 +389,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boton_modificar_campo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
             .addGroup(jd_modificar_campoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jd_modificar_campoLayout.createSequentialGroup()
@@ -436,6 +443,11 @@ public class Principal extends javax.swing.JFrame {
                 "Registros"
             }
         ));
+        tabla_registros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_registrosMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tabla_registros);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -506,10 +518,10 @@ public class Principal extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(boton_exportar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addComponent(boton_cargar_registros, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
+                .addComponent(boton_exportar, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addComponent(boton_cargar_registros, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,6 +559,65 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         popup_registros.add(mi_eliminar_registros);
+
+        mi_modificar_registros.setText("Modificar\n");
+        mi_modificar_registros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_modificar_registrosActionPerformed(evt);
+            }
+        });
+        popup_registros.add(mi_modificar_registros);
+
+        jLabel19.setText("Ingrese nuevo Registro: ");
+
+        boton_modificar_registro.setText("Modificar");
+        boton_modificar_registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_modificar_registroMouseClicked(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setText("Modificar Registros");
+
+        javax.swing.GroupLayout jd_modificar_buscar_registrosLayout = new javax.swing.GroupLayout(jd_modificar_buscar_registros.getContentPane());
+        jd_modificar_buscar_registros.getContentPane().setLayout(jd_modificar_buscar_registrosLayout);
+        jd_modificar_buscar_registrosLayout.setHorizontalGroup(
+            jd_modificar_buscar_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_modificar_buscar_registrosLayout.createSequentialGroup()
+                .addGroup(jd_modificar_buscar_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_modificar_buscar_registrosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_nuevoregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_modificar_buscar_registrosLayout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel20))
+                    .addGroup(jd_modificar_buscar_registrosLayout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(boton_modificar_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_modificar_buscar_registrosLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addGap(166, 166, 166))
+        );
+        jd_modificar_buscar_registrosLayout.setVerticalGroup(
+            jd_modificar_buscar_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_modificar_buscar_registrosLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel20)
+                .addGap(43, 43, 43)
+                .addGroup(jd_modificar_buscar_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(tf_nuevoregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(boton_modificar_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -710,8 +781,8 @@ public class Principal extends javax.swing.JFrame {
                 }
                 campos.add(new Campo(nombre_campo, tipo_campo, longitud_campo, campo_llave));
                 /*for (int i = 0; i < campos.size(); i++) {
-             System.out.println(campos.get(i).getNombre_campo());
-             }*/
+                 System.out.println(campos.get(i).getNombre_campo());
+                 }*/
                 DefaultTableModel modelo = (DefaultTableModel) tb_campos.getModel();
                 Object[] newrow = {nombre_campo, tipo_campo, longitud_campo, campo_llave};
                 modelo.addRow(newrow);
@@ -771,7 +842,7 @@ public class Principal extends javax.swing.JFrame {
         this.jd_modificar_campo.setVisible(true);
     }//GEN-LAST:event_mi_modificar_campoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void boton_modificar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_modificar_campoActionPerformed
         try {
             String nombre_campo, tipo_campo, campo_llave;
             int longitud_campo;
@@ -783,16 +854,16 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 campo_llave = "No";
             }
-            Campo camp = new Campo();
-            camp.setNombre_campo(nombre_campo);
-            camp.setTipo_campo(tipo_campo);
-            camp.setLongitud_campo(longitud_campo);
-            camp.setCampo_llave(campo_llave);
+            campos.get(tb_campos.getSelectedRow()).setNombre_campo(nombre_campo);
+            campos.get(tb_campos.getSelectedRow()).setTipo_campo(tipo_campo);
+            campos.get(tb_campos.getSelectedRow()).setLongitud_campo(longitud_campo);
+            campos.get(tb_campos.getSelectedRow()).setCampo_llave(campo_llave);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron las modificaciones");
         }
         jd_modificar_campo.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_boton_modificar_campoActionPerformed
 
     private void jm_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_registrosMouseClicked
         // TODO add your handling code here:
@@ -901,6 +972,39 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_boton_cargar_registrosMouseClicked
 
+    private void boton_modificar_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_modificar_registroMouseClicked
+        // TODO add your handling code here:
+        try {
+            String nuevo_registro = tf_nuevoregistro.getText();
+            //System.out.println(registros.get(tabla_registros.getSelectedRow()).getContenido());
+            registros.get(tabla_registros.getSelectedRow()).setContenido(nuevo_registro);
+
+            JOptionPane.showMessageDialog(this, "El registro se modifico");
+            tf_nuevoregistro.setText("");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_boton_modificar_registroMouseClicked
+
+    private void tabla_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_registrosMouseClicked
+        if (evt.isMetaDown()) {
+            int row = tabla_registros.getSelectedRow();
+            if (tabla_registros.getSelectedRow() != -1) {
+                popup_registros.show(evt.getComponent(), evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_tabla_registrosMouseClicked
+
+    private void mi_modificar_registrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_modificar_registrosActionPerformed
+        this.jd_modificar_buscar_registros.setModal(true);
+        this.jd_modificar_buscar_registros.pack();
+        this.jd_modificar_buscar_registros.setLocationRelativeTo(this);
+        this.jd_modificar_buscar_registros.setVisible(true);
+    }//GEN-LAST:event_mi_modificar_registrosActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -946,12 +1050,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton boton_crearcampo;
     private javax.swing.JButton boton_exportar;
     private javax.swing.JButton boton_guardarregistro;
+    private javax.swing.JButton boton_modificar_campo;
+    private javax.swing.JButton boton_modificar_registro;
     private javax.swing.ButtonGroup bt_campo_llave;
     private javax.swing.JComboBox<String> cb_tipo_campos;
     private javax.swing.JComboBox<String> cb_tipo_mod;
     private javax.swing.JMenuItem creararchivo;
     private javax.swing.JLabel foto_background;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -962,7 +1067,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -984,6 +1092,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JDialog jd_campos;
+    private javax.swing.JDialog jd_modificar_buscar_registros;
     private javax.swing.JDialog jd_modificar_campo;
     private javax.swing.JDialog jd_persona;
     private javax.swing.JDialog jd_registros;
@@ -992,6 +1101,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mi_eliminar_campo;
     private javax.swing.JMenuItem mi_eliminar_registros;
     private javax.swing.JMenuItem mi_modificar_campo;
+    private javax.swing.JMenuItem mi_modificar_registros;
     private javax.swing.JPopupMenu popup_campos;
     private javax.swing.JPopupMenu popup_registros;
     private javax.swing.JRadioButton rb_no;
@@ -1009,6 +1119,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_nombre_campo;
     private javax.swing.JTextField tf_nombre_mod;
+    private javax.swing.JTextField tf_nuevoregistro;
     // End of variables declaration//GEN-END:variables
     String Nombre;
     ArrayList list = new ArrayList();
