@@ -1,5 +1,9 @@
 package pruebaarbolb;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
@@ -17,7 +21,13 @@ public class PruebaArbolB {
         arbol = new ArrayList<>();
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        File ArchivoArbol = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        ArchivoArbol = new File("ArchivoArbol.txt");
+        fw = new FileWriter(ArchivoArbol);
+        bw = new BufferedWriter(fw);
         PruebaArbolB prueba = new PruebaArbolB(4);
         for (int i = 1; i <= 10; i++) {
             prueba.InsertarLlave(i);
@@ -32,6 +42,8 @@ public class PruebaArbolB {
             prueba.InsertarLlave(extra);
             prueba.Print(prueba.raiz, 0);
             System.out.println("RAIZ" + prueba.raiz.getLlaves());
+            bw.write("RAIZ" + prueba.raiz.getLlaves().toString());
+            bw.flush();
         } while (extra != -1);
     }
     
