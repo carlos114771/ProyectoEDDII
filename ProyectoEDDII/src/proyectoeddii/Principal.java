@@ -956,6 +956,10 @@ public class Principal extends javax.swing.JFrame {
                 Object[] newrow = {nombre_campo, tipo_campo, longitud_campo, campo_llave};
                 modelo.addRow(newrow);
                 tb_campos.setModel(modelo);
+                DefaultTableModel modelo_excel = (DefaultTableModel) tabla_datos_todos.getModel();
+                Object[] newcol = {nombre_campo};
+                modelo_excel.addColumn(nombre_campo, newcol);
+                tabla_datos_todos.setModel(modelo_excel);
 
                 FileWriter fw = new FileWriter(Nombre + ".txt");
                 BufferedWriter bw = new BufferedWriter(fw);
@@ -996,8 +1000,11 @@ public class Principal extends javax.swing.JFrame {
     private void mi_eliminar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_eliminar_campoActionPerformed
         if (tb_campos.getSelectedRow() >= 0) {
             DefaultTableModel modelo = (DefaultTableModel) tb_campos.getModel();
+            DefaultTableModel modelo_excel =(DefaultTableModel) tabla_datos_todos.getModel();
             campos.remove(tb_campos.getSelectedRow());
+            campos.remove(tabla_datos_todos.getSelectedRow());
             modelo.removeRow(tb_campos.getSelectedRow());
+            modelo_excel.removeRow(tabla_datos_todos.getSelectedRow());
 
             tb_campos.setModel(modelo);
         }
@@ -1046,10 +1053,14 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tabla_registros.getSelectedRow() >= 0) {
             DefaultTableModel modelo = (DefaultTableModel) tabla_registros.getModel();
+            DefaultTableModel modelo_excel = (DefaultTableModel) tabla_datos_todos.getModel();
             registros.remove(tabla_registros.getSelectedRow());
+            registros.remove(tabla_datos_todos.getSelectedRow());
             modelo.removeRow(tabla_registros.getSelectedRow());
-
+            modelo_excel.removeRow(tabla_datos_todos.getSelectedRow());
             tabla_registros.setModel(modelo);
+            tabla_datos_todos.setModel(modelo_excel);
+
         }
         JOptionPane.showMessageDialog(this, "Registro eliminado exitosamente");
     }//GEN-LAST:event_mi_eliminar_registrosActionPerformed
@@ -1074,6 +1085,11 @@ public class Principal extends javax.swing.JFrame {
                 Object[] newrow = {contenido};
                 modelo.addRow(newrow);
                 tabla_registros.setModel(modelo);
+
+                DefaultTableModel modelo_excel = (DefaultTableModel) tabla_datos_todos.getModel();
+                Object[] newcol = {contenido};
+                modelo_excel.addRow(newcol);
+                tabla_datos_todos.setModel(modelo_excel);
 
                 JOptionPane.showMessageDialog(this, "Se guardo correctamente");
             }
@@ -1425,6 +1441,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nuevoregistro;
     // End of variables declaration//GEN-END:variables
     String Nombre;
+//    DefaultTableModel modelo_excel = (DefaultTableModel) tabla_datos_todos.getModel();
     ArrayList list = new ArrayList();
     File archivo = null;
     int cont = 0;

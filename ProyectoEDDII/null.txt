@@ -1,2 +1,1 @@
-id;nombre;apellido;
-12143;carlos;rivera;
+id;nombre;
