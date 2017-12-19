@@ -1012,6 +1012,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_eliminar_campoActionPerformed
 
     private void mi_modificar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_modificar_campoActionPerformed
+         if (tb_campos.getSelectedRow() >= 0) {
+            DefaultTableModel modelo = (DefaultTableModel) tb_campos.getModel();
+            //campos.remove(tb_campos.getSelectedRow());
+            modelo.removeRow(tb_campos.getSelectedRow());
+            tb_campos.setModel(modelo);
+        }
         this.jd_modificar_campo.setModal(true);
         this.jd_modificar_campo.pack();
         this.jd_modificar_campo.setLocationRelativeTo(this);
@@ -1022,19 +1028,22 @@ public class Principal extends javax.swing.JFrame {
         try {
             String nombre_campo, tipo_campo, campo_llave;
             int longitud_campo;
-            nombre_campo = tf_nombre_campo.getText();
-            tipo_campo = cb_tipo_campos.getSelectedItem().toString();
-            longitud_campo = (Integer) sp_longitud_campos.getValue();
-            if (rb_si.isSelected()) {
+            nombre_campo = tf_nombre_mod.getText();
+            tipo_campo = cb_tipo_mod.getSelectedItem().toString();
+            longitud_campo = (Integer) sp_longitud_mod.getValue();
+            if (rb_si_mod.isSelected()) {
                 campo_llave = "Si";
             } else {
                 campo_llave = "No";
             }
-            campos.get(tb_campos.getSelectedRow()).setNombre_campo(nombre_campo);
+            /*campos.get(tb_campos.getSelectedRow()).setNombre_campo(nombre_campo);
             campos.get(tb_campos.getSelectedRow()).setTipo_campo(tipo_campo);
             campos.get(tb_campos.getSelectedRow()).setLongitud_campo(longitud_campo);
-            campos.get(tb_campos.getSelectedRow()).setCampo_llave(campo_llave);
-
+            campos.get(tb_campos.getSelectedRow()).setCampo_llave(campo_llave);*/
+            DefaultTableModel modelo = (DefaultTableModel) tb_campos.getModel();
+            Object[] newrow = {nombre_campo, tipo_campo, longitud_campo, campo_llave};
+            modelo.addRow(newrow);
+            tb_campos.setModel(modelo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado y no se guardaron las modificaciones");
         }
