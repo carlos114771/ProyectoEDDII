@@ -15,6 +15,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -115,7 +126,7 @@ public class Principal extends javax.swing.JFrame {
         jm_registros = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        Export_XML = new javax.swing.JMenuItem();
         menu_salir = new javax.swing.JMenuItem();
 
         jLabel3.setText("Nombre");
@@ -731,23 +742,22 @@ public class Principal extends javax.swing.JFrame {
         jd_ExportarExcelLayout.setHorizontalGroup(
             jd_ExportarExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_ExportarExcelLayout.createSequentialGroup()
-                .addGroup(jd_ExportarExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jd_ExportarExcelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jd_ExportarExcelLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(export_excel)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(export_excel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ExportarExcelLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jd_ExportarExcelLayout.setVerticalGroup(
             jd_ExportarExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ExportarExcelLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(export_excel)
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGap(37, 37, 37))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -805,8 +815,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem3);
 
-        jMenuItem4.setText("Exportar a XML");
-        jMenu3.add(jMenuItem4);
+        Export_XML.setText("Exportar a XML");
+        Export_XML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Export_XMLActionPerformed(evt);
+            }
+        });
+        jMenu3.add(Export_XML);
 
         jMenu1.add(jMenu3);
 
@@ -1207,7 +1222,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void export_excelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_export_excelActionPerformed
         // TODO add your handling code here:
-               if (this.tabla_datos_todos.getColumnCount() == 0) {
+        if (this.tabla_datos_todos.getColumnCount() == 0) {
             JOptionPane.showMessageDialog(null, "No hay Datos en la tabla para exportar ", "Prueba", JOptionPane.INFORMATION_MESSAGE);
             //this.txtDNI.grabFocus;
             return;
@@ -1236,6 +1251,46 @@ public class Principal extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_export_excelActionPerformed
+
+    private void Export_XMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Export_XMLActionPerformed
+        // TODO add your handling code here:
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            //elemento raiz
+            Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("root");
+            doc.appendChild(rootElement);
+            //Primer Elemento
+            for (int i = 0; i < campos.size(); i++) {
+
+                Element elemento1 = doc.createElement("Elemento");
+                rootElement.appendChild(elemento1);
+                //se agrega un atributo al nodo elemento y su valor
+                Attr attr = doc.createAttribute(campos.get(i).getNombre_campo());
+                for (int j = 0; j < registros.size(); j++) {
+
+                    attr.setValue(registros.get(j).getContenido());
+                }
+                elemento1.setAttributeNode(attr);
+            }
+
+            //se escribe el ccontenido del XML en un archivo
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            JOptionPane.showMessageDialog(null, "Exportacion Exitosa");
+            StreamResult restult = new StreamResult(new File("./prueba1.xml"));
+            transformer.transform(source, restult);
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_Export_XMLActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1278,6 +1333,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Export_XML;
     private javax.swing.JButton boton_buscar;
     private javax.swing.JButton boton_buscar_registro;
     private javax.swing.JButton boton_cargar_registros;
@@ -1322,7 +1378,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
