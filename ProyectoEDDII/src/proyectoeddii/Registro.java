@@ -12,7 +12,8 @@ import java.util.ArrayList;
  * @author Josué Zelaya
  */
 public class Registro {
-    public ArrayList<Campo> campos=new ArrayList();
+
+    public ArrayList<Campo> campos = new ArrayList();
     public String contenido;
 
     public Registro() {
@@ -40,10 +41,8 @@ public class Registro {
 
     @Override
     public String toString() {
-        return "Registro{" + "campos=" + campos + ", contenido=" + contenido + '}';
+//        return "Registro{" + "campos=" + campos + ", contenido=" + contenido + '}';
+        return contenido;
     }
 
-  
-    
-    
 }

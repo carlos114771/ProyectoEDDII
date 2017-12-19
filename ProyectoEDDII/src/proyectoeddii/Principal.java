@@ -6,11 +6,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 public class Principal extends javax.swing.JFrame {
@@ -42,7 +45,7 @@ public class Principal extends javax.swing.JFrame {
         tf_nombre_campo = new javax.swing.JTextField();
         boton_crearcampo = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        cb_tipo_campos = new javax.swing.JComboBox<String>();
+        cb_tipo_campos = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         sp_longitud_campos = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
@@ -61,7 +64,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         tf_nombre_mod = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        cb_tipo_mod = new javax.swing.JComboBox<String>();
+        cb_tipo_mod = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         sp_longitud_mod = new javax.swing.JSpinner();
         jLabel14 = new javax.swing.JLabel();
@@ -97,6 +100,10 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_buscar_registros = new javax.swing.JTable();
         boton_buscar_registro = new javax.swing.JButton();
+        jd_ExportarExcel = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabla_datos_todos = new javax.swing.JTable();
+        export_excel = new javax.swing.JButton();
         foto_background = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -106,6 +113,9 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jm_campos = new javax.swing.JMenu();
         jm_registros = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         menu_salir = new javax.swing.JMenuItem();
 
         jLabel3.setText("Nombre");
@@ -192,7 +202,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Ingrese el Tipo de Campo:");
 
-        cb_tipo_campos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto", "Numérico" }));
+        cb_tipo_campos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Texto", "Numérico" }));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Longitud del Campo:");
@@ -345,7 +355,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Ingrese el Tipo de Campo:");
 
-        cb_tipo_mod.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Texto", "Numérico" }));
+        cb_tipo_mod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Texto", "Numérico" }));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel13.setText("Longitud del Campo:");
@@ -536,7 +546,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(boton_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boton_exportar, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                    .addComponent(boton_exportar, javax.swing.GroupLayout.PREFERRED_SIZE, 159, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(boton_cargar_registros, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
@@ -699,6 +709,47 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        tabla_datos_todos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(tabla_datos_todos);
+
+        export_excel.setText("Exportar a Excel");
+        export_excel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                export_excelActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_ExportarExcelLayout = new javax.swing.GroupLayout(jd_ExportarExcel.getContentPane());
+        jd_ExportarExcel.getContentPane().setLayout(jd_ExportarExcelLayout);
+        jd_ExportarExcelLayout.setHorizontalGroup(
+            jd_ExportarExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ExportarExcelLayout.createSequentialGroup()
+                .addGroup(jd_ExportarExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_ExportarExcelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_ExportarExcelLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(export_excel)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jd_ExportarExcelLayout.setVerticalGroup(
+            jd_ExportarExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ExportarExcelLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(export_excel)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         foto_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoeddii/Circuit-Board-Background-600x600.jpg"))); // NOI18N
@@ -743,6 +794,21 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jm_registros);
+
+        jMenu3.setText("Exportar");
+
+        jMenuItem3.setText("Exportar a Excel");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setText("Exportar a XML");
+        jMenu3.add(jMenuItem4);
+
+        jMenu1.add(jMenu3);
 
         menu_salir.setText("Salir del Programa");
         menu_salir.addActionListener(new java.awt.event.ActionListener() {
@@ -994,7 +1060,6 @@ public class Principal extends javax.swing.JFrame {
                 modelo.addRow(newrow);
                 tabla_registros.setModel(modelo);
 
-                
                 JOptionPane.showMessageDialog(this, "Se guardo correctamente");
             }
         } catch (Exception e) {
@@ -1132,6 +1197,46 @@ public class Principal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_menu_salirActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        jd_ExportarExcel.setModal(true);
+        jd_ExportarExcel.pack();
+        jd_ExportarExcel.setVisible(true);
+        jd_ExportarExcel.setLocationRelativeTo(this);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void export_excelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_export_excelActionPerformed
+        // TODO add your handling code here:
+               if (this.tabla_datos_todos.getColumnCount() == 0) {
+            JOptionPane.showMessageDialog(null, "No hay Datos en la tabla para exportar ", "Prueba", JOptionPane.INFORMATION_MESSAGE);
+            //this.txtDNI.grabFocus;
+            return;
+        }
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de Excel", "xls");
+        chooser.setFileFilter(filter);
+        chooser.setDialogTitle("Guardar Archivo");
+        chooser.setMultiSelectionEnabled(false);
+        chooser.setAcceptAllFileFilterUsed(false);
+        if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            List<JTable> tb = new ArrayList<>();
+            List<String> nom = new ArrayList<>();
+            tb.add(tabla_datos_todos);
+            nom.add("Hoja 1");
+            String file = chooser.getSelectedFile().toString().concat(".xls");
+            try {
+                Exporter e = new Exporter(new File(file), tb, nom);
+                if (e.export()) {
+                    JOptionPane.showMessageDialog(null, "Los Datos fueron exportados a excel", "", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Hubo un error" + e.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_export_excelActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1185,6 +1290,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_tipo_campos;
     private javax.swing.JComboBox<String> cb_tipo_mod;
     private javax.swing.JMenuItem creararchivo;
+    private javax.swing.JButton export_excel;
     private javax.swing.JLabel foto_background;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -1211,9 +1317,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1221,8 +1330,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JDialog jd_ExportarExcel;
     private javax.swing.JDialog jd_buscar_registros;
     private javax.swing.JDialog jd_campos;
     private javax.swing.JDialog jd_modificar_buscar_registros;
@@ -1245,6 +1356,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner sp_longitud_campos;
     private javax.swing.JSpinner sp_longitud_mod;
     private javax.swing.JTable tabla_buscar_registros;
+    private javax.swing.JTable tabla_datos_todos;
     private javax.swing.JTable tabla_registros;
     private javax.swing.JTable tb_campos;
     private javax.swing.JTextField tf_buscar_registro;
